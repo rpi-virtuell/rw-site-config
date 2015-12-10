@@ -97,10 +97,23 @@ class RW_Site_Config_Options {
                     <br/>
                     <?php
                     $options = get_site_option( 'rw_site_config_options' );
-                    foreach( $options as $key => $value ) {
-                        echo $key ." => " . $value."<br>";
-                    }
                     ?>
+
+                    <table>
+                        <tr>
+                            <th><?php _e( 'delete', RW_Site_Config::$textdomain );?></th>
+                            <th><?php _e( 'Key', RW_Site_Config::$textdomain );?></th>
+                            <th><?php _e( 'Value', RW_Site_Config::$textdomain );?></th>
+                        </tr>
+                    <?php
+                    foreach( $options as $key => $value ) { ?>
+                        <tr>
+                            <td><input type="checkbox" name="rw_site_config_delete[<?php echo $key; ?>]"></td>
+                            <td><?php echo $key; ?></td>
+                            <td><?php echo $value; ?></td>
+                        </tr>
+                    <?php } ?>
+                    </table>
                     <br/>
                     <h3><?php _e( 'Add new option', RW_Site_Config::$textdomain ); ?></h3>
 
@@ -117,6 +130,17 @@ class RW_Site_Config_Options {
 
                     <input type="submit" class="button-primary" value="<?php _e('Save Changes' )?>" />
             </form>
+            <br/>
+            <br/>
+
+            <h3><?php _e( 'Config for wp-config.php on new mu-sites', RW_Site_Config::$textdomain ); ?></h3>
+            <div>
+                <textarea class="large-text">
+define('RW_SITE_CONFIG_PLUGINS_CONFIG','<?php echo serialize( $active_plugins ); ?>');
+define('RW_SITE_CONFIG_OPTIONS_CONFIG','<?php echo serialize( $options ); ?>');
+                </textarea>
+
+            </div>
         </div>
         <?php
     }
@@ -129,6 +153,14 @@ class RW_Site_Config_Options {
             if ( is_array( $_POST[ 'rw_site_config_plugins' ] ) ) {
                 update_site_option( 'rw_site_config_plugins', ( $_POST[ 'rw_site_config_plugins' ] ) );
             }
+        }
+
+        if ( isset ( $_POST[ 'rw_site_config_delete' ] )) {
+            $options = get_site_option( 'rw_site_config_options' );
+            foreach( $_POST[ 'rw_site_config_delete' ] as $key => $value ) {
+                unset ( $options[ $key ] );
+            }
+            update_site_option( 'rw_site_config_options', ( $options ) );
         }
         if ( isset ( $_POST[ 'rw_site_config_add_value' ] )  and isset ( $_POST[ 'rw_site_config_add_key' ] ) ) {
             $options = get_site_option( 'rw_site_config_options' );

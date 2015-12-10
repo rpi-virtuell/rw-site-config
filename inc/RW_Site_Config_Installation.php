@@ -43,6 +43,20 @@ class RW_Site_Config_Installation {
             );
         }
 
+        if ( defined( 'RW_SITE_CONFIG_PLUGINS_CONFIG' ) ) {
+            if ( false === get_site_option( 'rw_site_config_plugins' ) ) {
+                $plugins = unserialize( RW_SITE_CONFIG_PLUGINS_CONFIG );
+                update_site_option( 'rw_site_config_plugins', $plugins );
+            }
+        }
+
+        if ( defined( 'RW_SITE_CONFIG_OPTIONS_CONFIG' ) ) {
+            if ( false === get_site_option( 'rw_site_config_options' ) ) {
+                $options = unserialize( RW_SITE_CONFIG_OPTIONS_CONFIG );
+                update_site_option( 'rw_site_config_options', $options );
+            }
+        }
+
     }
 
     /**
