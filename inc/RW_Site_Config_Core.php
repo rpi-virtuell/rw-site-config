@@ -26,7 +26,7 @@ class RW_Site_Config_Core {
         $options = get_site_option( 'rw_site_config_options' );
         switch_to_blog( $blog_id );
         foreach( $active_plugins as $plugin => $value ) {
-            $result = activate_plugin( $plugin );
+            $result = activate_plugin( $plugin, NULL, false, true );
         }
         foreach ($options as $key => $value ) {
             add_option( $key, $value );
