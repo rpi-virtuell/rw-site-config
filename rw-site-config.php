@@ -12,7 +12,7 @@
  * Plugin Name:       RW Site Config
  * Plugin URI:        https://github.com/rpi-virtuell/rw-site-config
  * Description:       A plugin to activate plugins and set optons automaticly on new sites
- * Version:           0.0.1
+ * Version:           0.0.2
  * Author:            Frank Staude
  * Author URI:        https://staude.net
  * License:           GNU General Public License v2
@@ -34,7 +34,7 @@ class RW_Site_Config {
      * @since   0.0.1
      * @access  public
      */
-    static public $version = "0.0.1";
+    static public $version = "0.0.2";
 
     /**
      * Singleton object holder
