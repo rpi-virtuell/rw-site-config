@@ -165,7 +165,7 @@ define('RW_SITE_CONFIG_OPTIONS_CONFIG','<?php echo serialize( $options ); ?>');
         if ( isset ( $_POST[ 'rw_site_config_add_value' ] )  and isset ( $_POST[ 'rw_site_config_add_key' ] ) ) {
             $options = get_site_option( 'rw_site_config_options' );
             if ( ! is_array( $options) ) $options = array();
-            $options[ ( $_POST[ 'rw_site_config_add_key' ] ) ] = sanitize_text_field( $_POST[ 'rw_site_config_add_value' ] );
+            $options[ ( $_POST[ 'rw_site_config_add_key' ] ) ] = ( $_POST[ 'rw_site_config_add_value' ] );
             update_site_option( 'rw_site_config_options', ( $options ) );
         }
         wp_redirect( admin_url( 'network/settings.php?page=' . RW_Site_Config::$plugin_base_name ) );

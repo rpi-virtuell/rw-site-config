@@ -29,7 +29,7 @@ class RW_Site_Config_Core {
             $result = activate_plugin( $plugin, NULL, false, true );
         }
         foreach ($options as $key => $value ) {
-            add_option( $key, $value );
+            add_option( $key, unserialize( stripslashes( $value ) ) );
         }
         restore_current_blog();
         return;
