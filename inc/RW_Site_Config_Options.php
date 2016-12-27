@@ -110,7 +110,7 @@ class RW_Site_Config_Options {
                         <tr>
                             <td><input type="checkbox" name="rw_site_config_delete[<?php echo $key; ?>]"></td>
                             <td><?php echo $key; ?></td>
-                            <td><?php echo $value; ?></td>
+                            <td><?php echo stripslashes ($value); ?></td>
                         </tr>
                     <?php } ?>
                     </table>
